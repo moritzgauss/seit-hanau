@@ -1,0 +1,11 @@
+title: Moderation
+options:
+  delete: false
+  status: false
+  preview: false
+fields:
+  info:
+    label: Artikel-Moderation
+    type: info
+    text: |
+      Hier kannst du Artikel freigeben. Nur Admins haben Zugriff.

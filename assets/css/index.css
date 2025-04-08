@@ -1,0 +1,150 @@
+body {
+    font-family: Helvetica, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+a:any-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+p {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.article-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Immer 3 Spalten */
+    gap: 0; /* Start ohne Abstand */
+    padding: 0 20px; /* 20px Rand links und rechts */
+    transition: gap 1s ease-in-out 4s, padding-top 1s ease-in-out 4s, padding-bottom 1s ease-in-out 4s; 
+}
+
+.article-item {
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.article-item img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+/* Nach 4 Sekunden wird der Abstand zwischen den Bildern aktiviert */
+.article-grid.activated {
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Mobile Ansicht */
+@media (max-width: 600px) {
+    .article-grid {
+        grid-template-columns: repeat(3, 1fr); /* Auch auf Mobile 3 Spalten */
+    }
+
+    .article-grid.activated {
+        gap: 10px; /* Nach 4s 10px Abstand */
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+/* Standard-Tabelle */
+.archive-table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.archive-table th {
+    text-align: left;
+    font-weight: italic;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border-top: 1px solid #ffffff;
+    border-bottom: 2px solid #fff; 
+}
+
+.archive-table td {
+    vertical-align: top;
+    text-align: left;
+    border-bottom: 1px solid #ffffff;
+}
+
+.archive-table a {
+    color: #ffffff;
+    font-style: bold;
+    text-decoration: none;
+}
+
+.archive-table a:hover {
+    text-decoration: underline;
+}
+
+/* Hover-Effekt für Cover der Artikel */
+.archive-item {
+    position: relative;
+}
+
+.archive-cover {
+    position: absolute;
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; 
+}
+
+.archive-item:hover .archive-cover {
+    opacity: 1;
+}
+
+/* Mobile Ansicht: Schmalere Tabelle */
+@media (max-width: 600px) {
+    .archive-table {
+        width: 95%; /* Verkleinerte Breite auf mobilen Geräten */
+        margin: 0 auto; /* Zentrieren der Tabelle */
+    }
+
+    .archive-table th, .archive-table td {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Schriftgrößen anpassen */
+    .archive-table th {
+        font-size: 14px; /* Kleinere Schrift für Spaltenüberschriften */
+    }
+
+    .archive-table td {
+        font-size: 12px; /* Kleinere Schrift für Zelleninhalte */
+    }
+
+    /* Keine Veränderung der Tabellenstruktur, keine Block-Darstellung */
+    .archive-table tr {
+        display: table-row;
+    }
+
+    .archive-table td {
+        display: table-cell;
+        text-align: left;
+    }
+}

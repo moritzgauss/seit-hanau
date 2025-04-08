@@ -1,0 +1,23 @@
+footer {
+    text-align: left;
+    padding: 20px;
+    background: transparent;
+    color: white;
+    width: 100%;
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
+}
+
+.footer-nav a {
+    font-size: 36px; 
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}

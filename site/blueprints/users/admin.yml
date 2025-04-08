@@ -1,0 +1,13 @@
+title: Admin
+
+permissions:
+  access:
+    panel: true
+  pages:
+    create: true
+    delete: true
+    update: true
+    changeStatus: true
+  files:
+    upload: true
+    delete: true

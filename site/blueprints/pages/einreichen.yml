@@ -1,0 +1,56 @@
+title: Artikel einreichen
+description: Formular zum Einreichen neuer Artikel.
+
+fields:
+  title:
+    label: Titel
+    type: text
+    required: true
+
+  subtitle:
+    label: Untertitel
+    type: text
+
+  author:
+    label: Autor
+    type: text
+    required: true
+
+  date:
+    label: Veröffentlichungsdatum
+    type: date
+    required: true
+    default: today
+
+  category:
+    label: Kategorie
+    type: select
+    options:
+      news: News
+      meinung: Meinung
+      interview: Interview
+      reportage: Reportage
+      sonstiges: Sonstiges
+    required: true
+
+
+editor:
+  label: Artikelinhalt
+  type: markdown
+  required: true
+  size: large
+  font: monospace
+  buttons:
+    headlines:
+      - h1
+      - h2
+      - h3
+    bold: '**'  # Markdown syntax for bold
+    link: null  # Use Kirbytext for links
+
+  image:
+    label: Titelbild
+    type: files
+    max: 1
+    layout: cards
+    required: false # Corrected optional field structure

@@ -1,0 +1,85 @@
+.form-container {
+    width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-container h1 {
+    text-align: center;
+    color: #ffffff;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.label-text {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background: transparent;
+    color: #fff;
+    font-size: 16px; 
+    box-sizing: border-box;
+}
+
+select {
+    width: 100%; 
+    padding: 10px;
+    margin-top: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    width: 200px;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 16px;
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: white;
+    color: black;
+}
+
+.success {
+    color: #00ff00;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.error {
+    color: #ff3333;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}

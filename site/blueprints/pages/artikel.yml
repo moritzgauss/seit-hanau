@@ -1,0 +1,38 @@
+title: Artikel
+preset: page
+
+status:
+  draft: Entwurf
+  unlisted: In Prüfung
+  listed: Veröffentlicht
+
+fields:
+  title:
+    label: Titel
+    type: text
+  subtitle:
+    label: Untertitel
+    type: text
+  date:
+    label: Veröffentlichungsdatum
+    type: date
+  author:
+    label: Autor*in
+    type: text
+  category:
+    label: Kategorie
+    type: select
+    options:
+      news: News
+      meinung: Meinung
+      interview: Interview
+      reportage: Reportage
+      sonstiges: Sonstiges
+  text:
+    label: Inhalt
+    type: textarea
+    size: large
+  featured_image:
+    label: Titelbild
+    type: files
+    multiple: false

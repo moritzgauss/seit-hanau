@@ -1,0 +1,142 @@
+.header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px;
+    background: transparent;
+}
+
+.header .header-title {
+    color: #ffffff;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 48px;
+    font-family: "Helvetica", sans-serif;
+}
+
+.nav {
+    display: flex;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row; 
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: text-decoration 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    background: transparent;
+}
+
+.search-form input[type="search"] {
+    flex: 1;
+    height: 40px; 
+    padding: 8px 12px;
+    font-size: 16px;
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+.search-form input[type="search"]::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-form input[type="submit"] {
+    width: 120px; 
+    height: 40px; 
+    font-size: 16px;
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-form input[type="submit"]:hover {
+    background: white;
+    color: black;
+}
+.search-results {
+    border-collapse: collapse;
+}
+
+.search-results th, .search-results td {
+    padding-left: 36px;
+    padding-right: 20px;    
+    vertical-align: top;
+    text-align: left;
+}
+
+.search-results th {
+    font-weight: bold;
+}
+
+.search-results a {
+    color: white;
+    text-decoration: none;
+}
+
+.search-results a:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 600px) {
+    
+    .search-form input[type="submit"] {
+        width: 60;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .search-results thead {
+        display: none;
+    }
+
+    .search-results tr {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .search-results td {
+        display: block;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+        padding-right: 20px;
+        margin-bottom: 10px;
+    }
+
+    .search-results td::before {
+        content: attr(data-label); 
+        position: absolute;
+        left: 36px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+
+

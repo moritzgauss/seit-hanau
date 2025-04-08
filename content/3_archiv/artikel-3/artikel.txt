@@ -1,0 +1,12 @@
+Title: Mein Artikel
+Subtitle: Ein spannender Artikel
+----
+Author: Max Mustermann
+----
+Date: 2025-02-22
+----
+Category: News
+Tags: Technik, Zukunft, Innovation
+----
+Text:  
+Hier steht der eigentliche Artikeltext. Dieser Text kann fett, *kursiv* oder auch als Liste dargestellt werden.  

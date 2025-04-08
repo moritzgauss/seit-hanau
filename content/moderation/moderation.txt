@@ -1,0 +1,5 @@
+Title: Moderation
+Status: unlisted
+----
+
+Hier können Admins neue Artikel freigeben.

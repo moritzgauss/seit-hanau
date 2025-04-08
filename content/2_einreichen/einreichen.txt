@@ -1,0 +1,4 @@
+Title: Artikel einreichen
+----
+text:  
+Willkommen auf der Einreichungsseite für Artikel. Bitte fülle das Formular aus, um deinen Artikel einzureichen.

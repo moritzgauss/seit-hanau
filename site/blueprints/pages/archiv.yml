@@ -1,0 +1,27 @@
+title: Archiv
+description: Sammlung aller eingereichten Artikel.
+
+columns:
+  - width: 1/1
+    sections:
+      articles:
+        type: pages
+        label: Artikel
+        template: article
+        info: "{{ page.date.toDate('d.m.Y') }} | {{ page.category }} | {{ page.tags }}"
+        sortBy: date desc
+        columns:
+          title:
+            label: Titel
+          date:
+            label: Datum
+            type: date
+          author:
+            label: Autor*in
+          category:
+            label: Kategorie
+
+options:
+  create:
+    template:
+      - article
