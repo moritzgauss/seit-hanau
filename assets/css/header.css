@@ -2,26 +2,38 @@
     display: flex;
     justify-content: space-between; 
     align-items: center;
-    padding: 20px;
+    padding: 20px; /* Specify horizontal padding */
     background: transparent;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .header .header-title {
     color: #ffffff;
     text-transform: uppercase;
     text-decoration: none;
-    font-size: 48px;
+    font-size: 36px;
     font-family: "Helvetica", sans-serif;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.header .header-title:hover {
+    text-decoration: underline;
 }
 
 .nav {
     display: flex;
+    width: 100%;
 }
 
 .nav-links {
     display: flex;
     flex-direction: row; 
     gap: 20px;
+    width: 100%;
+    justify-content: flex-end;
 }
 
 .nav-links a {
@@ -35,13 +47,33 @@
     text-decoration: underline;
 }
 
+/* Mobile menu button */
+.menu-toggle {
+    display: none; /* Hide by default on desktop */
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px 12px;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: white;
+    color: black;
+}
+
 .hidden {
     display: none;
 }
 
 .search-form {
     display: flex;
-    align-items: center;
     gap: 10px;
     padding: 20px;
     background: transparent;
@@ -102,9 +134,48 @@
     text-decoration: underline;
 }
 
+@media (max-width: 768px) {
+    .header {
+        padding: 15px;
+        flex-wrap: wrap;
+    }
 
-@media (max-width: 600px) {
-    
+    .header .header-title {
+        font-size: 28px; /* Match footer tablet size */
+        white-space: wrap; /* Allow wrapping */
+    }
+
+    .menu-toggle {
+        display: flex; /* Only show on mobile */
+    }
+
+    .nav {
+        display: none; /* Hide nav by default on mobile */
+        width: 100%; /* Full width */
+        order: 3; /* Push navigation below header elements */
+        background: black;
+        padding: 15px;
+        z-index: 1000;
+    }
+
+    .nav.active {
+        display: block; /* Show nav when active */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px; /* Match footer gap */
+        width: 100%;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
     .search-form input[type="submit"] {
         width: 60;
         padding: 8px 12px;
@@ -135,6 +206,29 @@
         left: 36px;
         font-weight: bold;
         text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+    }
+
+    .header .header-title {
+        font-size: 24px; /* Match footer mobile size */
+        white-space: wrap; /* Allow wrapping */
+    }
+
+    .nav-links {
+        gap: 6px; /* Match footer gap */
+    }
+
+    .nav {
+        padding: 10px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
     }
 }
 

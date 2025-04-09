@@ -1,3 +1,10 @@
+/* Add/update base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Helvetica, sans-serif;
     background-color: #000000;
@@ -6,6 +13,9 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 a:any-link {
@@ -23,14 +33,23 @@ p {
     padding-right: 20px;
 }
 
+/* Update container styles */
+.intro-text {
+    max-width: 800px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    line-height: 1.6;
+}
 
-.article-grid {
-    flex: 1;
+.article-grid { 
+    width: 100%;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Immer 3 Spalten */
-    gap: 0; /* Start ohne Abstand */
-    padding: 0 20px; /* 20px Rand links und rechts */
-    transition: gap 1s ease-in-out 4s, padding-top 1s ease-in-out 4s, padding-bottom 1s ease-in-out 4s; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0;
+    padding: 20px;
+    transition: gap 1s ease-in-out 4s; 
 }
 
 .article-item {
@@ -47,8 +66,6 @@ p {
 /* Nach 4 Sekunden wird der Abstand zwischen den Bildern aktiviert */
 .article-grid.activated {
     gap: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 /* Mobile Ansicht */
@@ -59,8 +76,6 @@ p {
 
     .article-grid.activated {
         gap: 10px; /* Nach 4s 10px Abstand */
-        padding-top: 10px;
-        padding-bottom: 10px;
     }
 }
 
@@ -147,4 +162,64 @@ p {
         display: table-cell;
         text-align: left;
     }
+}
+
+/* Add responsive breakpoints */
+@media (max-width: 1024px) {
+    .article-grid.activated {
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .intro-text {
+        max-width: 90%;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 10px;
+    }
+    
+    .article-grid.activated {
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    p {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .archive-table {
+        width: 100%;
+        margin: 20px 10px;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .article-grid.activated {
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    .intro-text {
+        padding: 0 1rem;
+    }
+    
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 18px; }
 }

@@ -1,5 +1,7 @@
 .form-container {
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -9,6 +11,7 @@
 .form-container h1 {
     text-align: center;
     color: #ffffff;
+    font-size: clamp(24px, 5vw, 32px);
 }
 
 label {
@@ -16,6 +19,7 @@ label {
     font-weight: bold;
     margin-top: 10px;
     color: #ffffff;
+    font-size: clamp(14px, 4vw, 16px);
 }
 
 .label-text {
@@ -25,19 +29,19 @@ label {
 
 input, textarea, select {
     width: 100%;
-    padding: 10px;
+    padding: clamp(8px, 2vw, 10px);
     margin-top: 10px;
     border: 1px solid #ffffff;
     border-radius: 5px;
     background: transparent;
     color: #fff;
-    font-size: 16px; 
+    font-size: clamp(14px, 4vw, 16px);
     box-sizing: border-box;
 }
 
 select {
     width: 100%; 
-    padding: 10px;
+    padding: clamp(8px, 2vw, 10px);
     margin-top: 10px;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -50,13 +54,14 @@ select {
 
 textarea {
     resize: vertical;
+    min-height: 120px;
 }
 
 button {
     width: 200px;
     padding: 12px;
     margin-top: 20px;
-    font-size: 16px;
+    font-size: clamp(14px, 4vw, 16px);
     color: white;
     background: transparent;
     border: 1px solid white;
@@ -70,16 +75,69 @@ button:hover {
     color: black;
 }
 
-.success {
-    color: #00ff00;
+.success, .error {
     font-weight: bold;
     text-align: center;
     margin-top: 15px;
+    font-size: clamp(14px, 4vw, 16px);
+}
+
+.success {
+    color: #00ff00;
 }
 
 .error {
     color: #ff3333;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 15px;
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+        max-width: 90%;
+    }
+    
+    button {
+        width: 100%;
+        max-width: none;
+    }
+
+    input, textarea, select {
+        font-size: 16px; /* Prevent zoom on mobile iOS */
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .label-text {
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    input, textarea, select {
+        margin-top: 5px;
+        padding: 8px;
+    }
+
+    button {
+        padding: 10px;
+        margin-top: 15px;
+    }
+}
+
+/* Small mobile styles */
+@media (max-width: 320px) {
+    .form-container {
+        padding: 8px;
+        gap: 10px;
+    }
+
+    input, textarea, select {
+        padding: 6px;
+    }
 }

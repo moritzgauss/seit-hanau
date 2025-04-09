@@ -10,19 +10,19 @@
     <link rel="stylesheet" href="<?= url('assets/css/submit.css') ?>">
     <link rel="stylesheet" href="<?= url('assets/css/sammlung.css') ?>">
     <link rel="stylesheet" href="<?= url('assets/css/header.css') ?>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.2/simplemde.min.css">
 </head>
 
 <body>
 
 <header class="header">
-    <a class="header-title" href="<?= url('home') ?>"><?= $site->title()->esc() ?></a>
+    <a href="<?= $site->url() ?>" class="header-title"><?= $site->title() ?></a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav class="nav">
         <div class="nav-links">
-        <a href="#" id="load-search">Suche</a>
-        <a href="<?= url('einreichen') ?>">Einreichen</a>
-        <a href="<?= url('sammlung') ?>">Meine Sammlung</a>
-        <a href="<?= url('archiv') ?>">Archiv</a>
+            <a href="#" id="load-search">Suche</a>
+            <a href="<?= url('einreichen') ?>">Einreichen</a>
+            <a href="<?= url('sammlung') ?>">Meine Sammlung</a>
+            <a href="<?= url('archiv') ?>">Archiv</a>
         </div>
     </nav>
 </header>
@@ -65,6 +65,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 }
             });
+    });
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
     });
 });
 </script>

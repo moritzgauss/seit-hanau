@@ -4,20 +4,54 @@ footer {
     background: transparent;
     color: white;
     width: 100%;
+    margin-top: auto;
 }
 
 .footer-nav {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 10px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .footer-nav a {
-    font-size: 36px; 
+    font-size: 36px;
     color: rgb(255, 255, 255);
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .footer-nav a:hover {
     text-decoration: underline;
+}
+
+/* Tablet screens */
+@media (max-width: 768px) {
+    footer {
+        padding: 15px;
+    }
+    
+    .footer-nav {
+        gap: 8px;
+    }
+    
+    .footer-nav a {
+        font-size: 28px;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+    footer {
+        padding: 10px;
+    }
+    
+    .footer-nav {
+        gap: 6px;
+    }
+    
+    .footer-nav a {
+        font-size: 24px;
+    }
 }

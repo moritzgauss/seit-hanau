@@ -1,28 +1,28 @@
 .article-content {
-    max-width: 700px;
+    width: 100%;
     margin: auto;
-    padding: 40px 20px;
+    padding: 20px;
     font-family: "Helvetica", sans-serif;
     color: #ffffff;
     line-height: 1.8;
 }
 
 .article-content h1 {
-    font-size: 32px;
+    font-size: clamp(24px, 5vw, 32px);
     font-weight: bold;
     margin-bottom: 10px;
     text-align: left;
 }
 
 .article-content h2 {
-    font-size: 26px;
+    font-size: clamp(20px, 4vw, 26px);
     font-weight: bold;
     margin-top: 20px;
     text-align: left;
 }
 
 .article-content p {
-    font-size: 18px;
+    font-size: clamp(16px, 3vw, 18px);
     margin-bottom: 20px;
     text-align: justify;
 }
@@ -42,4 +42,35 @@
     font-style: italic;
     color: #dddddd;
     margin: 20px 0;
+    font-size: clamp(16px, 3vw, 18px);
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#loading-indicator {
+    font-style: italic;
+    color: #666;
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+    .article-content {
+        padding: 15px;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+    .article-content {
+        padding: 10px;
+    }
+    
+    .article-content blockquote {
+        padding-left: 10px;
+        margin: 15px 0;
+    }
 }

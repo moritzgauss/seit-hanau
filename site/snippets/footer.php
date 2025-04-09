@@ -9,6 +9,6 @@
 <script src="<?= url('assets/js/search.js') ?>"></script>
 <script src="<?= url('assets/js/archive.js') ?>"></script>
 <script src="<?= url('assets/js/submit.js') ?>"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.2/simplemde.min.js"></script>
+<script src="<?= url('assets/js/sammlung.js') ?>"></script>
 </body>
 </html>
