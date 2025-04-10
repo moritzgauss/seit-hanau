@@ -1,0 +1,13 @@
+title: Home
+icon: 🏠
+
+options:
+  delete: false
+  changeSlug: false
+  changeStatus: false
+
+fields:
+  intro:
+    label: Einführungstext
+    type: textarea
+    size: large

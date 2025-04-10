@@ -1,24 +1,29 @@
 title: Artikel
-preset: page
-
-status:
-  draft: Entwurf
-  unlisted: In Prüfung
-  listed: Veröffentlicht
+options:
+  status:
+    draft: In Bearbeitung
+    unlisted: In Prüfung
+    listed: Veröffentlicht
 
 fields:
   title:
     label: Titel
     type: text
-  subtitle:
-    label: Untertitel
-    type: text
+    width: 2/3
+    required: true
+    
   date:
-    label: Veröffentlichungsdatum
+    label: Datum
     type: date
+    width: 1/3
+    required: true
+    
   author:
-    label: Autor*in
+    label: Autor
     type: text
+    width: 1/2
+    required: true
+    
   category:
     label: Kategorie
     type: select
@@ -28,11 +33,26 @@ fields:
       interview: Interview
       reportage: Reportage
       sonstiges: Sonstiges
+    width: 1/2
+    required: true
+    
+  subtitle:
+    label: Untertitel
+    type: text
+    
   text:
     label: Inhalt
     type: textarea
     size: large
-  featured_image:
+    required: true
+    
+  moderation_notes:
+    label: Moderationsnotizen
+    type: textarea
+    when:
+      status: unlisted
+
+  cover:
     label: Titelbild
     type: files
-    multiple: false
+    max: 1

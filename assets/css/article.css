@@ -46,6 +46,7 @@
 }
 
 .download-btn {
+    text-align: center;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -72,5 +73,9 @@
     .article-content blockquote {
         padding-left: 10px;
         margin: 15px 0;
+    }
+    .download-btn {
+        width: 160px;   
+        font-size: 14px;
     }
 }

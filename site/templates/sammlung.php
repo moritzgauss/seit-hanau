@@ -5,18 +5,18 @@
     
     <div class="article-bar">
         <div class="article-bar-content">
-            <?php foreach (page('archiv')->children() as $article): ?>
-            <div class="article-thumbnail" data-article-id="<?= $article->id() ?>" 
-                 data-title="<?= $article->title()->esc() ?>"
-                 data-content="<?= $article->text()->esc() ?>"
-                 data-author="<?= $article->author()->esc() ?>"
-                 data-date="<?= $article->date()->toDate('d.m.Y') ?>">
-                <?php if ($image = $article->image()): ?>
+        <?php foreach (page('archiv')->children()->filterBy('status', 'listed') as $post): ?>
+            <div class="article-thumbnail" data-article-id="<?= $post->id() ?>" 
+                 data-title="<?= $post->title()->esc() ?>"
+                 data-content="<?= $post->text()->esc() ?>"
+                 data-author="<?= $post->author()->esc() ?>"
+                 data-date="<?= $post->date()->toDate('d.m.Y') ?>">
+                <?php if ($image = $post->image()): ?>
                 <img src="<?= $image->thumb(['width' => 200])->url() ?>" 
-                     alt="<?= $article->title()->esc() ?>">
+                     alt="<?= $post->title()->esc() ?>">
                 <?php endif ?>
             </div>
-            <?php endforeach ?>
+        <?php endforeach ?>
         </div>
     </div>
 
@@ -39,7 +39,21 @@ async function downloadCollection() {
     const selectedArticles = document.querySelectorAll('.grid-area .article-thumbnail');
     if (selectedArticles.length === 0) return;
     
-    downloadArticles(selectedArticles);
+    // Show loading state
+    const downloadBtn = document.querySelector('.download-collection-btn');
+    const originalText = downloadBtn.textContent;
+    downloadBtn.textContent = 'Erstelle PDF...';
+    downloadBtn.disabled = true;
+    
+    try {
+        await downloadArticles(selectedArticles);
+    } catch (error) {
+        console.error('PDF generation failed:', error);
+        alert('PDF konnte nicht erstellt werden. Bitte versuchen Sie es erneut.');
+    } finally {
+        downloadBtn.textContent = originalText;
+        downloadBtn.disabled = false;
+    }
 }
 </script>
 

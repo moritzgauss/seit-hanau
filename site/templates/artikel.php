@@ -11,9 +11,12 @@
       <?= $page->text()->kt() ?>
     </div>
 
-    <button class="download-btn" onclick="downloadArticle('<?= $page->id() ?>', '<?= $page->title()->esc() ?>', '<?= $page->author()->esc() ?>', '<?= $page->date()->toDate('d.m.Y') ?>', '<?= $page->text()->esc() ?>')">
+    <button class="download-btn" onclick="downloadArticle(this)" data-id="<?= $page->id() ?>" data-title="<?= $page->title()->esc() ?>" data-author="<?= $page->author()->esc() ?>" data-date="<?= $page->date()->toDate('d.m.Y') ?>">
       Als PDF herunterladen
     </button>
+    <div id="article-content" style="display: none;">
+      <?= $page->text()->kt() ?>
+    </div>
   </article>
 </main>
 
@@ -21,54 +24,76 @@
 <script>
 window.jsPDF = window.jspdf.jsPDF;
 
-function downloadArticle(articleId, title, author, date, content) {
+function downloadArticle(button) {
     try {
+        const articleId = button.dataset.id;
+        const title = button.dataset.title;
+        const author = button.dataset.author;
+        const date = button.dataset.date;
+        const content = document.getElementById('article-content').innerHTML;
+
         const doc = new jsPDF({
             orientation: 'p',
             unit: 'mm',
             format: 'a4'
         });
 
-        const pageWidth = doc.internal.pageSize.width;
+        // A4 dimensions and margins
+        const pageWidth = 210;
+        const pageHeight = 297;
         const margin = 20;
-        const textWidth = pageWidth - (2 * margin);
+        const contentWidth = pageWidth - (2 * margin);
+        let yPosition = margin;
 
-        // Set font styles
-        doc.setFont('helvetica');
-        
-        // Add title
-        doc.setFontSize(16);
-        doc.text(title, margin, margin);
+        // Title styling
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(24);
+        const titleLines = doc.splitTextToSize(title, contentWidth);
+        doc.text(titleLines, margin, yPosition);
+        yPosition += (titleLines.length * 10) + 5;
 
-        // Add metadata
+        // Metadata styling
         doc.setFontSize(12);
-        doc.text(`Von ${author}`, margin, margin + 10);
-        doc.text(date, margin, margin + 15);
+        doc.setFont('helvetica', 'italic');
+        doc.text(`Von ${author} - ${date}`, margin, yPosition);
+        yPosition += 10;
 
-        // Add main content
-        doc.setFontSize(11);
-        
-        // Clean up the content
-        const cleanContent = content.replace(/\r?\n/g, ' ').trim();
-        const splitText = doc.splitTextToSize(cleanContent, textWidth);
-        
-        // Calculate if we need a new page based on content height
-        let yPosition = margin + 25;
-        const lineHeight = 5; // approximately 5mm line height
+        // Process content
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(12);
 
-        splitText.forEach((line, index) => {
-            if (yPosition > doc.internal.pageSize.height - margin) {
+        // Convert HTML to plain text and split into paragraphs
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
+        const textContent = tempDiv.textContent;
+        const paragraphs = textContent.split('\n').filter(p => p.trim());
+
+        for (const paragraph of paragraphs) {
+            // Check for page break
+            if (yPosition > pageHeight - (margin + 20)) {
                 doc.addPage();
                 yPosition = margin;
             }
-            doc.text(line, margin, yPosition);
-            yPosition += lineHeight;
-        });
 
-        doc.save(`artikel-${articleId}.pdf`);
+            const lines = doc.splitTextToSize(paragraph.trim(), contentWidth);
+            doc.text(lines, margin, yPosition);
+            yPosition += (lines.length * 7) + 5;
+        }
+
+        // Add footer line
+        for (let i = 1; i <= doc.internal.getNumberOfPages(); i++) {
+            doc.setPage(i);
+            doc.setDrawColor(200);
+            doc.line(margin, pageHeight - 15, pageWidth - margin, pageHeight - 15);
+        }
+
+        // Save with just the title as filename (remove special characters)
+        const safeTitle = title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+        doc.save(`${safeTitle}.pdf`);
+
     } catch (error) {
         console.error('PDF generation failed:', error);
-        alert('PDF konnte nicht erstellt werden.');
+        alert('PDF konnte nicht erstellt werden. Fehler: ' + error.message);
     }
 }
 </script>

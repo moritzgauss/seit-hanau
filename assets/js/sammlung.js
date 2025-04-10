@@ -1,16 +1,13 @@
-import { jsPDF } from 'jspdf';
-import { marked } from 'marked';
-
 document.addEventListener('DOMContentLoaded', () => {
     const gridArea = document.querySelector('.grid-area');
-    const maxArticles = 16;
+    const maxArticles = 12; // Update max articles to 16
     let placedArticles = [];
 
     // Clear any existing content
     gridArea.innerHTML = '';
 
-    // Create 4x4 grid
-    for (let i = 0; i < 16; i++) {
+    // Create 4x4 grid (16 zones) instead of 6x6
+    for (let i = 0; i < 12; i++) {
         const dropZone = document.createElement('div');
         dropZone.className = 'drop-zone';
         dropZone.dataset.index = i;
@@ -112,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             positions: Array.from(dropZones).map(zone => zone.getAttribute('data-occupied')).filter(Boolean)
         };
 
+        // Save to localStorage for now (could be replaced with server-side storage)
         localStorage.setItem('sammlung-config', JSON.stringify(config));
     }
 });

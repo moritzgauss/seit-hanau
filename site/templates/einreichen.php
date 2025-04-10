@@ -3,47 +3,54 @@
 <h1>Artikel einreichen</h1>
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($kirby->request()->is('POST')) {
     try {
-        $title = get('title');
-        $subtitle = get('subtitle');
-        $author = get('author');
-        $date = get('date');
-        $category = get('category');
-        $text = get('text');
-        $image = $_FILES['image'] ?? null;
-
-        $articles = page('archiv'); // Zielordner für Artikel
-
-        // Artikel als Entwurf anlegen
+        $articles = page('archiv');
+        $title = $kirby->request()->get('title');
+        
+        // Sicheren Slug generieren
+        $slug = Str::slug($title);
+        
+        // Artikel erstellen mit Kirbys createChild Methode
         $newArticle = $articles->createChild([
-            'slug' => str::slug($title),
+            'slug'     => $slug,
             'template' => 'article',
-            'content' => [
-                'title' => $title,
-                'subtitle' => $subtitle,
-                'author' => $author,
-                'date' => $date,
-                'category' => $category,
-                'text' => $text,
+            'content'  => [
+                'title'    => $title,
+                'subtitle' => $kirby->request()->get('subtitle'),
+                'author'   => $kirby->request()->get('author'),
+                'date'     => $kirby->request()->get('date'),
+                'category' => $kirby->request()->get('category'),
+                'text'     => $kirby->request()->get('text')
             ]
         ]);
 
-        // Artikel auf "In Prüfung" setzen
+        // Status setzen
         $newArticle->changeStatus('unlisted');
 
-        // Falls ein Bild hochgeladen wurde
-        if ($image && $image['size'] > 0) {
-            $newArticle->createFile([
-                'source' => $image['tmp_name'],
-                'filename' => $image['name']
-            ]);
+        // Bildupload mit Kirbys Datei-API
+        if ($file = $kirby->request()->file('image')) {
+            try {
+                $newArticle->createFile([
+                    'source'   => $file->tmp_name(),
+                    'filename' => $file->name(),
+                ]);
+            } catch (Exception $e) {
+                // Bildupload fehlgeschlagen, aber Artikel wurde erstellt
+            }
         }
 
-        echo "<p class='success'>Artikel erfolgreich eingereicht und wartet auf Freigabe.</p>";
+        go($page->url() . '?success=1');
     } catch (Exception $e) {
-        echo "<p class='error'>Fehler: " . $e->getMessage() . "</p>";
+        go($page->url() . '?error=' . urlencode($e->getMessage()));
     }
+}
+
+// Erfolgs- oder Fehlermeldung anzeigen
+if (isset($_GET['success'])) {
+    echo "<p class='success'>Artikel erfolgreich eingereicht und wartet auf Freigabe.</p>";
+} elseif (isset($_GET['error'])) {
+    echo "<p class='error'>Fehler: " . htmlspecialchars($_GET['error']) . "</p>";
 }
 ?>
 
@@ -67,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label>Artikelinhalt:</label>
         <textarea name="text" required></textarea>
 
-        <label>Bild: <input type="file" name="image"></label>
+        <label>Bild: <input type="file" name="image" accept="image/*"></label>
 
         <button type="submit">Absenden</button>
     </form>

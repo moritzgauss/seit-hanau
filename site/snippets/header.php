@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= url('assets/css/submit.css') ?>">
     <link rel="stylesheet" href="<?= url('assets/css/sammlung.css') ?>">
     <link rel="stylesheet" href="<?= url('assets/css/header.css') ?>">
+    <link rel="stylesheet" href="<?= url('assets/css/moderation.css') ?>">
 </head>
 
 <body>

@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach (page('archiv')->children() as $post): ?>
+        <?php foreach (page('archiv')->children()->filterBy('status', 'listed') as $post): ?>
             <tr class="archive-item">
                 <td data-label="Titel">
                     <a href="<?= $post->url() ?>"><?= $post->title() ?></a>
