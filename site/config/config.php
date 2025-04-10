@@ -1,13 +1,13 @@
 <?php
-return [
-    'site.maintenance' => true, // Auf false setzen, wenn die Seite live gehen soll
-];
 
 return [
     'debug' => true,
     'panel' => [
         'install' => true,
         'user' => 'admin'
+    ],
+    'site' => [
+        'maintenance' => true // Set to false when site should go live
     ],
     'routes' => []
 ];
